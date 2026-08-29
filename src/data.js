@@ -125,10 +125,23 @@ export const education = {
     'Object-Oriented Programming',
     'System Analysis & Design',
   ],
-  certs: [
-    'Huawei HCIA — Datacom & Cloud Computing',
-    'CCNA: Enterprise Networking, Security & Automation',
-    'CCNA: Switching, Routing & Wireless Essentials',
-    'CCNA: Introduction to Networks',
-  ],
 }
+
+// Certifications live in their own bar below the hero. The three CCNA modules are one track,
+// so they're presented as a single credential rather than three separate ones.
+export const certifications = [
+  {
+    issuer: 'Huawei',
+    name: 'HCIA',
+    modules: ['Datacom', 'Cloud Computing'],
+  },
+  {
+    issuer: 'Cisco',
+    name: 'CCNA',
+    modules: [
+      'Enterprise Networking, Security & Automation',
+      'Switching, Routing & Wireless Essentials',
+      'Introduction to Networks',
+    ],
+  },
+]

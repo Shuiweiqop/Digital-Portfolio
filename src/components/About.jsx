@@ -55,22 +55,6 @@ export default function About({ about, education }) {
             </>
           )}
 
-          <h3
-            className="mt-6 font-mono text-[11px] font-bold uppercase tracking-[0.16em]"
-            style={{ color: 'var(--bp-accent)' }}
-          >
-            Certifications
-          </h3>
-          <ul className="mt-2.5 space-y-2 text-sm" style={{ color: 'var(--bp-ink-soft)' }}>
-            {education.certs.map((c) => (
-              <li key={c} className="flex gap-2">
-                <span aria-hidden="true" style={{ color: 'var(--bp-accent)' }}>
-                  ▸
-                </span>
-                {c}
-              </li>
-            ))}
-          </ul>
         </aside>
       </div>
     </Section>
