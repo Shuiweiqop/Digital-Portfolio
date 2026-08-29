@@ -14,7 +14,7 @@ export const profile = {
   resumeUrl: '/NgYiXuan_SoftwareEngineer.pdf', // drop your PDF into /public with this name
   socials: {
     github: 'https://github.com/Shuiweiqop',
-    linkedin: 'https://www.linkedin.com/in/yi-xuan-ng-093633253/',
+    linkedin: 'https://www.linkedin.com/in/ng-yi-xuan-093633253/',
   },
 }
 
