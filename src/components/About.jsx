@@ -33,6 +33,28 @@ export default function About({ about, education }) {
             {education.detail}
           </p>
 
+          {education.coursework && (
+            <>
+              <h3
+                className="mt-6 font-mono text-[11px] font-bold uppercase tracking-[0.16em]"
+                style={{ color: 'var(--bp-accent)' }}
+              >
+                Relevant Coursework
+              </h3>
+              <div className="mt-2.5 flex flex-wrap gap-1.5">
+                {education.coursework.map((c) => (
+                  <span
+                    key={c}
+                    className="border px-2 py-0.5 font-mono text-[11px]"
+                    style={{ borderColor: 'var(--bp-ink)', color: 'var(--bp-ink-soft)' }}
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
+
           <h3
             className="mt-6 font-mono text-[11px] font-bold uppercase tracking-[0.16em]"
             style={{ color: 'var(--bp-accent)' }}

@@ -37,6 +37,12 @@ function ProjectCard({ project }) {
         </div>
       </div>
 
+      {project.context && (
+        <p className="mt-1 font-mono text-[11px]" style={{ color: 'var(--bp-ink-muted)' }}>
+          {project.context}
+        </p>
+      )}
+
       <div className="mt-2.5 h-[3px] w-12" style={{ backgroundColor: 'var(--bp-accent)' }} />
 
       <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--bp-ink-soft)' }}>
