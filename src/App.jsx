@@ -8,13 +8,14 @@ import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { useReveal } from './useReveal'
+import { SkillFocusProvider } from './SkillFocus'
 import { profile, about, projects, experience, skills, education, certifications } from './data'
 
 export default function App() {
   useReveal()
 
   return (
-    <>
+    <SkillFocusProvider>
       <Navbar name={profile.name} />
       <main>
         <Hero profile={profile} />
@@ -26,6 +27,6 @@ export default function App() {
         <Contact profile={profile} />
       </main>
       <Footer profile={profile} />
-    </>
+    </SkillFocusProvider>
   )
 }

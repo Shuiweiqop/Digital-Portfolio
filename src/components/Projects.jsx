@@ -1,5 +1,6 @@
 import Section from './Section'
 import { GitHubIcon, ExternalIcon } from './Icons'
+import SkillChip from './SkillChip'
 
 function ProjectCard({ project }) {
   return (
@@ -62,13 +63,7 @@ function ProjectCard({ project }) {
 
       <div className="mt-auto flex flex-wrap gap-1.5 pt-5">
         {project.tech.map((t) => (
-          <span
-            key={t}
-            className="border px-2 py-0.5 font-mono text-[11px] font-medium"
-            style={{ borderColor: 'var(--bp-ink)', color: 'var(--bp-ink-soft)' }}
-          >
-            {t}
-          </span>
+          <SkillChip key={t} name={t} />
         ))}
       </div>
 
