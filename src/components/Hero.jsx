@@ -1,69 +1,141 @@
 import { GitHubIcon, LinkedInIcon, MailIcon, DownloadIcon } from './Icons'
 import profilePhoto from '../assets/profile.jpeg'
 
-export default function Hero({ profile }) {
+// The portrait is framed as a code editor window: tab, gutter, and a line of
+// Python underneath — a nod to the Python LMS that is the final-year project.
+function PortraitEditor() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      {/* subtle background accent */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+    <div className="bp-panel bp-shadow-lg w-[236px] max-w-full">
+      <div className="flex items-center gap-1.5 px-2.5 py-2" style={{ backgroundColor: 'var(--bp-ed-bar)' }}>
+        <span className="block h-2 w-2 rounded-full bg-slate-600" />
+        <span className="block h-2 w-2 rounded-full bg-slate-600" />
+        <span className="block h-2 w-2 rounded-full bg-slate-600" />
+        <span className="ml-1.5 font-mono text-[11px]" style={{ color: 'var(--bp-ed-tab)' }}>
+          profile.py
+        </span>
       </div>
 
-      <div className="mx-auto grid min-h-screen max-w-5xl items-center gap-12 px-6 pt-20 md:grid-cols-[1fr_auto] md:gap-16">
-        <div className="flex flex-col justify-center">
-          <p className="animate-fade-up font-mono text-sm text-accent">Hi, my name is</p>
-          <h1 className="mt-3 animate-fade-up text-5xl font-extrabold tracking-tight text-slate-900 sm:text-6xl">
-            {profile.name}.
+      <div className="grid grid-cols-[26px_1fr]" style={{ backgroundColor: 'var(--bp-ed-body)' }}>
+        <div
+          className="border-r pr-1.5 pt-1.5 text-right font-mono text-[10px] leading-[1.45] tabular-nums"
+          style={{
+            backgroundColor: 'var(--bp-ed-gutter)',
+            borderColor: 'var(--bp-ed-gutter-line)',
+            color: 'var(--bp-ed-gutter-num)',
+          }}
+          aria-hidden="true"
+        >
+          1<br />2<br />3<br />4<br />5<br />6
+        </div>
+        <div className="p-1.5">
+          <img
+            src={profilePhoto}
+            alt="Ng Yi Xuan"
+            className="block h-[172px] w-full object-cover object-[center_25%]"
+          />
+        </div>
+      </div>
+
+      <div
+        className="overflow-x-auto whitespace-nowrap border-t px-2.5 py-2 font-mono text-[11px] leading-relaxed"
+        style={{
+          backgroundColor: 'var(--bp-ed-code-bg)',
+          borderColor: 'var(--bp-ed-gutter-line)',
+        }}
+      >
+        <span style={{ color: 'var(--bp-syn-cm)' }}># final year project</span>
+        <br />
+        <span className="font-bold" style={{ color: 'var(--bp-syn-kw)' }}>
+          def
+        </span>{' '}
+        <span style={{ color: 'var(--bp-syn-fn)' }}>build</span>
+        <span style={{ color: 'var(--bp-ink)' }}>(idea):</span>
+        <br />
+        {'    '}
+        <span className="font-bold" style={{ color: 'var(--bp-syn-kw)' }}>
+          return
+        </span>{' '}
+        <span style={{ color: 'var(--bp-syn-str)' }}>"shipped"</span>
+      </div>
+    </div>
+  )
+}
+
+export default function Hero({ profile }) {
+  return (
+    <section id="top">
+      <div className="mx-auto grid min-h-[88vh] max-w-5xl items-center gap-9 px-6 pb-14 pt-24 md:grid-cols-[auto_1fr] md:gap-10">
+        <div className="order-first animate-fade-up mx-auto md:mx-0">
+          <PortraitEditor />
+        </div>
+
+        <div className="animate-fade-up">
+          <span className="bp-tag">{profile.title}</span>
+
+          <h1
+            className="mt-3 text-[clamp(34px,6vw,56px)] font-extrabold uppercase leading-[0.94] tracking-[-0.035em]"
+            style={{ color: 'var(--bp-ink)' }}
+          >
+            {profile.name}
           </h1>
-          <h2 className="mt-2 animate-fade-up text-3xl font-bold tracking-tight text-slate-400 sm:text-4xl">
+
+          <div className="mb-3.5 mt-2.5 h-[3px]" style={{ backgroundColor: 'var(--bp-ink)' }} />
+
+          <p className="text-[17px] font-semibold" style={{ color: 'var(--bp-ink-soft)' }}>
             I build things for the web.
-          </h2>
-          <p className="mt-6 max-w-2xl animate-fade-up text-lg leading-relaxed text-slate-600">
+          </p>
+
+          <p
+            className="mt-3.5 max-w-[54ch] text-[14.5px] leading-relaxed"
+            style={{ color: 'var(--bp-ink-soft)' }}
+          >
             {profile.tagline}
           </p>
 
-          <p className="mt-4 animate-fade-up text-sm font-medium text-slate-500">
+          <p className="mt-4 font-mono text-xs" style={{ color: 'var(--bp-ink-muted)' }}>
             {profile.availability}
           </p>
 
-          <div className="mt-8 flex animate-fade-up flex-wrap items-center gap-4">
-            <a
-              href="#projects"
-              className="rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-accent-dark"
-            >
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <a href="#projects" className="bp-btn bp-btn-primary bp-focus">
               View my work
             </a>
             <a
               href={profile.resumeUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-accent hover:text-accent"
+              className="bp-btn bp-btn-secondary bp-focus"
             >
               <DownloadIcon /> Resume
             </a>
           </div>
 
-          <div className="mt-10 flex animate-fade-up items-center gap-5 text-slate-400">
-            <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="transition hover:text-accent">
+          <div className="mt-7 flex items-center gap-5" style={{ color: 'var(--bp-ink-muted)' }}>
+            <a
+              href={profile.socials.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="bp-focus transition hover:text-accent"
+            >
               <GitHubIcon className="h-6 w-6" />
             </a>
-            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition hover:text-accent">
+            <a
+              href={profile.socials.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="bp-focus transition hover:text-accent"
+            >
               <LinkedInIcon className="h-6 w-6" />
             </a>
-            <a href={`mailto:${profile.email}`} aria-label="Email" className="transition hover:text-accent">
+            <a
+              href={`mailto:${profile.email}`}
+              aria-label="Email"
+              className="bp-focus transition hover:text-accent"
+            >
               <MailIcon className="h-6 w-6" />
             </a>
-          </div>
-        </div>
-
-        <div className="order-first animate-fade-up md:order-last">
-          <div className="relative mx-auto w-56 sm:w-64 md:w-72">
-            <div className="absolute -inset-3 -z-10 rounded-full bg-accent/10 blur-2xl" />
-            <img
-              src={profilePhoto}
-              alt={profile.name}
-              className="aspect-square w-full rounded-full object-cover object-[center_25%] shadow-lg ring-4 ring-white"
-            />
           </div>
         </div>
       </div>

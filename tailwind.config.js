@@ -1,13 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
-        accent: {
-          DEFAULT: '#4f46e5', // indigo-600
-          light: '#6366f1',
-          dark: '#4338ca',
+        // Blueprint palette. These map to the CSS variables in index.css so
+        // utilities like `hover:text-accent` follow the active theme instead of
+        // pinning the light-mode value.
+        accent: 'var(--bp-accent)',
+        ink: {
+          DEFAULT: 'var(--bp-ink)',
+          soft: 'var(--bp-ink-soft)',
+          muted: 'var(--bp-ink-muted)',
+        },
+        paper: {
+          DEFAULT: 'var(--bp-paper)',
+          raised: 'var(--bp-raised)',
         },
       },
       fontFamily: {

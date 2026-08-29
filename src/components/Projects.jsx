@@ -3,46 +3,73 @@ import { GitHubIcon, ExternalIcon } from './Icons'
 
 function ProjectCard({ project }) {
   return (
-    <article className="reveal group flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-accent/40 hover:shadow-md">
+    <article className="reveal bp-panel bp-shadow group flex flex-col p-5 transition-transform duration-150 hover:-translate-y-1">
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-lg font-bold text-slate-900 transition group-hover:text-accent">
+        <h3
+          className="text-[17px] font-extrabold uppercase leading-tight tracking-[-0.02em]"
+          style={{ color: 'var(--bp-ink)' }}
+        >
           {project.name}
         </h3>
-        <div className="flex items-center gap-3 text-slate-400">
+        <div className="flex shrink-0 items-center gap-3" style={{ color: 'var(--bp-ink-muted)' }}>
           {project.links.github && (
-            <a href={project.links.github} target="_blank" rel="noreferrer" aria-label={`${project.name} on GitHub`} className="transition hover:text-accent">
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${project.name} on GitHub`}
+              className="bp-focus transition hover:text-accent"
+            >
               <GitHubIcon />
             </a>
           )}
           {project.links.demo && (
-            <a href={project.links.demo} target="_blank" rel="noreferrer" aria-label={`${project.name} live demo`} className="transition hover:text-accent">
+            <a
+              href={project.links.demo}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${project.name} live demo`}
+              className="bp-focus transition hover:text-accent"
+            >
               <ExternalIcon className="h-5 w-5" />
             </a>
           )}
         </div>
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-600">{project.blurb}</p>
+      <div className="mt-2.5 h-[3px] w-12" style={{ backgroundColor: 'var(--bp-accent)' }} />
 
-      <ul className="mt-4 space-y-2 text-sm text-slate-600">
+      <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--bp-ink-soft)' }}>
+        {project.blurb}
+      </p>
+
+      <ul className="mt-4 space-y-2 text-sm" style={{ color: 'var(--bp-ink-soft)' }}>
         {project.highlights.map((h, i) => (
           <li key={i} className="flex gap-2">
-            <span className="mt-1 text-accent">▹</span>
+            <span aria-hidden="true" className="mt-0.5" style={{ color: 'var(--bp-accent)' }}>
+              ▸
+            </span>
             <span>{h}</span>
           </li>
         ))}
       </ul>
 
-      <div className="mt-5 flex flex-wrap gap-2 pt-2">
+      <div className="mt-auto flex flex-wrap gap-1.5 pt-5">
         {project.tech.map((t) => (
-          <span key={t} className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-medium text-accent">
+          <span
+            key={t}
+            className="border px-2 py-0.5 font-mono text-[11px] font-medium"
+            style={{ borderColor: 'var(--bp-ink)', color: 'var(--bp-ink-soft)' }}
+          >
             {t}
           </span>
         ))}
       </div>
 
       {!project.links.github && !project.links.demo && (
-        <p className="mt-4 text-xs italic text-slate-400">Source available on request</p>
+        <p className="mt-3 font-mono text-[11px]" style={{ color: 'var(--bp-ink-muted)' }}>
+          Source available on request
+        </p>
       )}
     </article>
   )
@@ -50,7 +77,7 @@ function ProjectCard({ project }) {
 
 export default function Projects({ projects }) {
   return (
-    <Section id="projects" index="02" title="Things I've Built">
+    <Section id="projects" label="Work" title="Things I've Built">
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p) => (
           <ProjectCard key={p.name} project={p} />

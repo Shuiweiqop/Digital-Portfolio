@@ -2,12 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Blueprint theme tokens.
+   Light is the base; dark only redefines the values, so every
+   component styles through the same variable names.
+   ============================================================ */
+:root {
+  --bp-paper: #f4f4f1;
+  --bp-raised: #ffffff;
+  --bp-grid: #dfe3e6;
+  --bp-ink: #14181c;
+  --bp-ink-soft: #3d4852;
+  --bp-ink-muted: #6b7785;
+  --bp-accent: #0891b2;
+  --bp-shadow: #0891b2;
+  /* Text on a --bp-ink fill. Tracked separately because --bp-ink inverts
+     between themes while this must always contrast against it. */
+  --bp-on-ink: #f4f4f1;
+
+  /* Editor chrome (portrait frame) */
+  --bp-ed-bar: #14181c;
+  --bp-ed-tab: #cfd6dd;
+  --bp-ed-body: #ffffff;
+  --bp-ed-gutter: #eef1f3;
+  --bp-ed-gutter-line: #dbe1e6;
+  --bp-ed-gutter-num: #9aa5b0;
+  --bp-ed-code-bg: #fbfcfd;
+  --bp-syn-kw: #0550ae;
+  --bp-syn-fn: #8250df;
+  --bp-syn-str: #0a7d33;
+  --bp-syn-cm: #8b949e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bp-paper: #0e1216;
+    --bp-raised: #161b21;
+    --bp-grid: #1f2933;
+    --bp-ink: #e8edf2;
+    --bp-ink-soft: #b3bfca;
+    --bp-ink-muted: #8494a2;
+    --bp-accent: #22b8d8;
+    --bp-shadow: #22b8d8;
+    --bp-on-ink: #0e1216;
+
+    --bp-ed-bar: #05080b;
+    --bp-ed-tab: #9fb0bd;
+    --bp-ed-body: #161b21;
+    --bp-ed-gutter: #11161b;
+    --bp-ed-gutter-line: #263039;
+    --bp-ed-gutter-num: #5c6b78;
+    --bp-ed-code-bg: #0f1419;
+    --bp-syn-kw: #6cb6ff;
+    --bp-syn-fn: #d2a8ff;
+    --bp-syn-str: #7ee787;
+    --bp-syn-cm: #6e7c8a;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-white text-slate-800 antialiased;
+  background-color: var(--bp-paper);
+  color: var(--bp-ink);
+  background-image:
+    linear-gradient(var(--bp-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  @apply antialiased;
 }
 
 /* Reveal-on-scroll: elements start hidden, .in-view is added by an observer */
@@ -19,4 +83,92 @@ body {
 .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-fade-up {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   Blueprint component primitives
+   ============================================================ */
+@layer components {
+  /* Hard-edged panel: the base object of the whole design. */
+  .bp-panel {
+    background-color: var(--bp-raised);
+    border: 3px solid var(--bp-ink);
+  }
+
+  .bp-shadow {
+    box-shadow: 4px 4px 0 var(--bp-shadow);
+  }
+  .bp-shadow-lg {
+    box-shadow: 7px 7px 0 var(--bp-shadow);
+  }
+
+  /* Uppercase cyan label */
+  .bp-tag {
+    display: inline-block;
+    background-color: var(--bp-accent);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+  }
+
+  .bp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 11px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 3px solid var(--bp-ink);
+    transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+  }
+  .bp-btn-primary {
+    background-color: var(--bp-ink);
+    color: var(--bp-on-ink);
+    box-shadow: 4px 4px 0 var(--bp-shadow);
+  }
+  .bp-btn-secondary {
+    background-color: var(--bp-raised);
+    color: var(--bp-ink);
+  }
+  .bp-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--bp-shadow);
+  }
+  .bp-btn-secondary:hover {
+    box-shadow: 2px 2px 0 var(--bp-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bp-btn {
+      transition: none;
+    }
+    .bp-btn:hover {
+      transform: none;
+    }
+  }
+
+  /* Visible keyboard focus on the grid ground */
+  .bp-focus:focus-visible {
+    outline: 3px solid var(--bp-accent);
+    outline-offset: 3px;
+  }
 }

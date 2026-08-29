@@ -2,14 +2,23 @@ import Section from './Section'
 
 export default function Skills({ skills }) {
   return (
-    <Section id="skills" index="04" title="Technical Skills">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <Section id="skills" label="Stack" title="Technical Skills">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((s) => (
-          <div key={s.group} className="reveal rounded-xl border border-slate-200 bg-slate-50 p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">{s.group}</h3>
-            <div className="mt-3 flex flex-wrap gap-2">
+          <div key={s.group} className="reveal bp-panel bp-shadow p-4">
+            <h3
+              className="font-mono text-[11px] font-bold uppercase tracking-[0.16em]"
+              style={{ color: 'var(--bp-accent)' }}
+            >
+              {s.group}
+            </h3>
+            <div className="mt-3 flex flex-wrap gap-1.5">
               {s.items.map((item) => (
-                <span key={item} className="rounded-md bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-sm">
+                <span
+                  key={item}
+                  className="border px-2 py-0.5 font-mono text-[11px] font-medium"
+                  style={{ borderColor: 'var(--bp-ink)', color: 'var(--bp-ink-soft)' }}
+                >
                   {item}
                 </span>
               ))}
