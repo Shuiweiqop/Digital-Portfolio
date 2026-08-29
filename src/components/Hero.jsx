@@ -1,6 +1,7 @@
 import { GitHubIcon, LinkedInIcon, MailIcon, DownloadIcon } from './Icons'
 import profilePhoto from '../assets/profile.jpeg'
 import { useTypewriter } from '../useTypewriter'
+import SketchDesk from './SketchDesk'
 
 // The snippet is typed out character by character on load. Tokens carry their
 // own colour so syntax highlighting survives the reveal; `end` is each token's
@@ -113,8 +114,11 @@ function PortraitEditor() {
 
 export default function Hero({ profile }) {
   return (
-    <section id="top">
-      <div className="mx-auto grid min-h-[88vh] max-w-5xl items-center gap-9 px-6 pb-14 pt-24 md:grid-cols-[auto_1fr] md:gap-10">
+    <section id="top" className="relative overflow-hidden">
+      {/* Decorative sketch of a desk setup. Its keyboard lights up as you type. */}
+      <SketchDesk className="pointer-events-none absolute bottom-6 right-4 hidden w-64 opacity-70 lg:block xl:w-72" />
+
+      <div className="relative mx-auto grid min-h-[88vh] max-w-5xl items-center gap-9 px-6 pb-14 pt-24 md:grid-cols-[auto_1fr] md:gap-10">
         <div className="order-first animate-fade-up mx-auto md:mx-0">
           <PortraitEditor />
         </div>

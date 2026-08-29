@@ -32,6 +32,12 @@
   --bp-syn-fn: #8250df;
   --bp-syn-str: #0a7d33;
   --bp-syn-cm: #8b949e;
+
+  /* Pencil colour for hand-drawn illustrations. */
+  --bp-sketch: #93a1ad;
+
+  /* Sketched grid tile — 4 cells of 28px, lines displaced by turbulence. */
+  --bp-grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cfilter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2.4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cg filter='url(%23w)' stroke='%23dfe3e6' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M0 28h112M0 56h112M0 84h112M0 112h112'/%3E%3Cpath d='M28 0v112M56 0v112M84 0v112M112 0v112'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,6 +63,10 @@
     --bp-syn-fn: #d2a8ff;
     --bp-syn-str: #7ee787;
     --bp-syn-cm: #6e7c8a;
+
+    --bp-sketch: #55636f;
+
+    --bp-grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cfilter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2.4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cg filter='url(%23w)' stroke='%231f2933' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M0 28h112M0 56h112M0 84h112M0 112h112'/%3E%3Cpath d='M28 0v112M56 0v112M84 0v112M112 0v112'/%3E%3C/g%3E%3C/svg%3E");
   }
 }
 
@@ -64,13 +74,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hand-drawn grid. The lines are SVG paths pushed off-true by a turbulence
+   displacement filter, so the ground reads as a sketched engineering pad
+   rather than a printed grid. The tile is 112px (4 cells) so the wobble
+   doesn't visibly repeat every cell. */
 body {
   background-color: var(--bp-paper);
   color: var(--bp-ink);
-  background-image:
-    linear-gradient(var(--bp-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bp-grid) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: var(--bp-grid-image);
+  background-size: 112px 112px;
   @apply antialiased;
 }
 
