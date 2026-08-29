@@ -1,15 +1,22 @@
 import Section from './Section'
+import profilePhoto from '../assets/profile.jpeg'
 
 export default function About({ about, education }) {
   return (
     <Section id="about" index="01" title="About Me">
       <div className="grid gap-10 md:grid-cols-3">
         <div className="reveal space-y-4 text-slate-600 md:col-span-2">
+          <img
+            src={profilePhoto}
+            alt=""
+            className="float-none mb-6 h-40 w-40 rounded-xl object-cover object-[center_25%] shadow-md sm:float-left sm:mb-4 sm:mr-6"
+          />
           {about.paragraphs.map((p, i) => (
             <p key={i} className="leading-relaxed">
               {p}
             </p>
           ))}
+          <div className="clear-both" />
         </div>
 
         <aside className="reveal rounded-xl border border-slate-200 bg-slate-50 p-6">
