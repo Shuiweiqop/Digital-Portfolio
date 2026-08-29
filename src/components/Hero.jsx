@@ -1,5 +1,67 @@
 import { GitHubIcon, LinkedInIcon, MailIcon, DownloadIcon } from './Icons'
 import profilePhoto from '../assets/profile.jpeg'
+import { useTypewriter } from '../useTypewriter'
+
+// The snippet is typed out character by character on load. Tokens carry their
+// own colour so syntax highlighting survives the reveal; `end` is each token's
+// cumulative offset, which is compared against how much has been typed.
+const CODE_TOKENS = [
+  { text: '# final year project', color: 'var(--bp-syn-cm)' },
+  { text: '\n', color: null },
+  { text: 'def', color: 'var(--bp-syn-kw)', bold: true },
+  { text: ' ', color: null },
+  { text: 'build', color: 'var(--bp-syn-fn)' },
+  { text: '(idea):', color: 'var(--bp-ink)' },
+  { text: '\n    ', color: null },
+  { text: 'return', color: 'var(--bp-syn-kw)', bold: true },
+  { text: ' ', color: null },
+  { text: '"shipped"', color: 'var(--bp-syn-str)' },
+]
+
+const CODE_TEXT = CODE_TOKENS.map((t) => t.text).join('')
+
+function CodeSnippet() {
+  const { shown, done } = useTypewriter(CODE_TEXT, { speed: 38, startDelay: 700 })
+
+  let offset = 0
+  return (
+    <code>
+      {CODE_TOKENS.map((token, i) => {
+        const start = offset
+        offset += token.text.length
+        const visible = token.text.slice(0, Math.max(0, shown.length - start))
+        if (!visible) return null
+        // Newlines and the indent that follows need real line breaks.
+        const parts = visible.split('\n')
+        return (
+          <span
+            key={i}
+            className={token.bold ? 'font-bold' : undefined}
+            style={token.color ? { color: token.color } : undefined}
+          >
+            {parts.map((p, j) => (
+              <span key={j}>
+                {j > 0 && <br />}
+                {p.replace(/ /g, ' ')}
+              </span>
+            ))}
+          </span>
+        )
+      })}
+      <span
+        aria-hidden="true"
+        className={done ? 'cursor-blink' : undefined}
+        style={{
+          display: 'inline-block',
+          width: '0.55em',
+          height: '1em',
+          verticalAlign: '-0.15em',
+          backgroundColor: 'var(--bp-accent)',
+        }}
+      />
+    </code>
+  )
+}
 
 // The portrait is framed as a code editor window: tab, gutter, and a line of
 // Python underneath — a nod to the Python LMS that is the final-year project.
@@ -43,19 +105,7 @@ function PortraitEditor() {
           borderColor: 'var(--bp-ed-gutter-line)',
         }}
       >
-        <span style={{ color: 'var(--bp-syn-cm)' }}># final year project</span>
-        <br />
-        <span className="font-bold" style={{ color: 'var(--bp-syn-kw)' }}>
-          def
-        </span>{' '}
-        <span style={{ color: 'var(--bp-syn-fn)' }}>build</span>
-        <span style={{ color: 'var(--bp-ink)' }}>(idea):</span>
-        <br />
-        {'    '}
-        <span className="font-bold" style={{ color: 'var(--bp-syn-kw)' }}>
-          return
-        </span>{' '}
-        <span style={{ color: 'var(--bp-syn-str)' }}>"shipped"</span>
+        <CodeSnippet />
       </div>
     </div>
   )

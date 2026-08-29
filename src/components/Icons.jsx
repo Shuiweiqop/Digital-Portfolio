@@ -35,6 +35,14 @@ export function ExternalIcon({ className = 'w-4 h-4' }) {
   )
 }
 
+export function CheckIcon({ className = 'w-5 h-5' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m4 12 6 6L20 6" />
+    </svg>
+  )
+}
+
 export function DownloadIcon({ className = 'w-4 h-4' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

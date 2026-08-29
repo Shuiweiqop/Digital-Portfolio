@@ -61,7 +61,7 @@ export const projects = [
     tech: ['Node.js', 'Socket.io', 'JWT', 'PostgreSQL', 'Supabase', 'JavaScript'],
     links: {
       github: 'https://github.com/Shuiweiqop', // update to the exact repo
-      demo: null, // add your live demo URL here
+      demo: 'https://mahjong-app-bcu4.vercel.app/',
     },
     featured: true,
   },
