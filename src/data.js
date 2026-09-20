@@ -1,6 +1,6 @@
 // ============================================================
 //  All your portfolio content lives here.
-//  Edit this file to update text — no need to touch components.
+//  Edit this file to update text. No need to touch components.
 //  Kept in sync with public/NgYiXuan_SoftwareEngineer.pdf
 // ============================================================
 
@@ -23,7 +23,7 @@ export const profile = {
 export const about = {
   paragraphs: [
     "I’m a final-year Computer Science student at Universiti Malaysia Sabah (CGPA 3.51), currently interning as a full-stack developer at Godigital (Ean Label Industry), where I build features for a warehouse management system using Laravel, React, and Nuxt.js.",
-    "What I enjoy most is taking an idea all the way to something people actually use. My final-year project is an adaptive Python learning platform — it tracks how well each student knows each concept, so the exercises it gives them can follow what they haven’t got yet instead of a fixed order. Outside coursework I’ve built a real-time multiplayer game platform, restructured so that adding a new game doesn’t mean rewriting the room and turn logic, and an AI meeting platform that turns a recording into a summary and a list of action items.",
+    "What I enjoy most is taking an idea all the way to something people actually use. My final-year project is an adaptive Python learning platform that tracks how well each student knows each concept, so the exercises it gives them can follow what they haven’t got yet instead of a fixed order. Outside coursework I’ve built a real-time multiplayer game platform, restructured so that adding a new game doesn’t mean rewriting the room and turn logic, and an AI meeting platform that turns a recording into a summary and a list of action items.",
     "I care about code that holds up after I stop looking at it. On my FYP that meant 338 tests running on every push, which is how I found two bugs that were quietly corrupting the learning-gain figures while still producing numbers that looked reasonable. I’m graduating in November 2026 and available full-time from September 2026.",
   ],
 }
@@ -35,10 +35,22 @@ export const projects = [
     blurb:
       'A full-stack adaptive learning platform that teaches Python to beginners through lessons, coding exercises, gamification, and community features.',
     highlights: [
-      'Built with Laravel, React, Inertia.js and MySQL — it grew to 264 routes and 68 migrations because lessons, coding exercises, quizzes, gamification and the community side each needed their own data model.',
-      'Used Bayesian Knowledge Tracing to estimate how well a student knows each concept, updating after every answer. A plain correct-rate treats every question the same, so I weighted it by question type and difficulty, and measured each student’s gain against the placement test they sat at the start.',
-      'Wrote 338 tests (PHPUnit, Vitest, Playwright) and ran them on every push. They caught two separate bugs in the learning-gain figures — one double-counting attempts, one overwriting the placement baseline. Both still produced plausible-looking numbers, so nothing but a test would have found them.',
-      'Lesson authoring and concept tagging go through the Gemini API so I didn’t have to hand-tag every exercise, and student code runs in a Judge0 sandbox so it cannot touch the server.',
+      {
+        what: 'Laravel, React and MySQL across 264 routes and 68 migrations',
+        why: 'Lessons, coding exercises, quizzes, gamification and the community side each needed their own data model, which is how it grew to that size.',
+      },
+      {
+        what: 'Bayesian Knowledge Tracing to track per-concept mastery',
+        why: 'It estimates how well a student knows each concept and updates after every answer. A plain correct-rate treats every question the same, so I weighted it by question type and difficulty, and measured each student’s gain against the placement test they sat at the start.',
+      },
+      {
+        what: '338 tests (PHPUnit, Vitest, Playwright) running on every push',
+        why: 'They caught two separate bugs in the learning-gain figures. One double-counted attempts, the other overwrote the placement baseline. Both still produced plausible-looking numbers, so nothing but a test would have found them.',
+      },
+      {
+        what: 'Gemini API for lesson authoring, Judge0 for running student code',
+        why: 'Gemini drafts lessons and tags concepts so I didn’t have to hand-tag every exercise. Student code runs in a Judge0 sandbox so it cannot touch the server.',
+      },
     ],
     tech: ['Laravel', 'React', 'Inertia.js', 'MySQL', 'Gemini API', 'Judge0', 'PHPUnit', 'Vitest', 'Playwright'],
     links: {
@@ -53,11 +65,26 @@ export const projects = [
     blurb:
       'A real-time multiplayer game platform (Draw & Guess, Werewolf) where the room, turn and player logic is shared, so each new game only has to describe its own rules.',
     highlights: [
-      'Adding the second game meant copying half the first one, so I pulled the shared parts (rooms, turns, players) out into a common layer. A new game is now one backend module, one frontend view and one line in the registry.',
-      'Kept game state on the server instead of the browser. In Werewolf the client would otherwise be able to read everyone’s roles, so each player only receives what their role is allowed to see.',
-      'Socket.io keeps the room in sync, with room codes so friends can join without accounts, and host controls (kick, transfer host) because whoever opened the room needs a way to deal with someone who leaves mid-game.',
-      'JWT auth with a guest mode, so you can try a game without signing up. Uses PostgreSQL on Supabase in production, with an in-memory fallback so the app still runs locally without setting up a database.',
-      'Also wrote a Mahjong scorer that works out which scoring patterns a finished hand matches, under both Hong Kong and Guobiao rules.',
+      {
+        what: 'Game state lives on the server, not the browser',
+        why: 'In Werewolf the client would otherwise be able to read everyone’s roles, so each player only receives what their role is allowed to see.',
+      },
+      {
+        what: 'Adding a game takes one module and one registry line',
+        why: 'Adding the second game meant copying half the first one, so I pulled the shared parts (rooms, turns, players) out into a common layer. A new game is now one backend module, one frontend view and one line in the registry.',
+      },
+      {
+        what: 'Socket.io for live sync, room codes, host controls',
+        why: 'Room codes let friends join without making an account. Host controls (kick, transfer host) exist because whoever opened the room needs a way to deal with someone who leaves mid-game.',
+      },
+      {
+        what: 'JWT auth with guest mode, PostgreSQL on Supabase',
+        why: 'Guest mode means you can try a game without signing up. There is an in-memory fallback so the app still runs locally without setting up a database.',
+      },
+      {
+        what: 'Mahjong scorer for Hong Kong and Guobiao rules',
+        why: 'It works out which scoring patterns a finished hand matches.',
+      },
     ],
     tech: ['Node.js', 'Socket.io', 'JWT', 'PostgreSQL', 'Supabase', 'JavaScript'],
     links: {
@@ -70,13 +97,28 @@ export const projects = [
     name: 'Meeting AI Platform',
     context: 'Side Project · 2025',
     blurb:
-      'AI-powered platform that turns meeting recordings into transcripts, summaries, key topics, and action items — built for people who don’t have the habit of taking notes.',
+      'AI-powered platform that turns meeting recordings into transcripts, summaries, key topics, and action items. Built for people who don’t have the habit of taking notes.',
     highlights: [
-      'Whisper turns the recording into a transcript, then Gemini pulls out a summary, the key topics and the action items — the transcript alone is still too long for anyone to actually read after a meeting.',
-      'Transcription takes minutes, so the page first polled the server for progress. That was wasteful and still felt slow, so I switched to Laravel Reverb over WebSocket and let the server push each stage as it finishes. Reverb still drops the connection quietly now and then, so a 15-second check runs alongside it and the page recovers on its own.',
-      'Added Redis for caching and as the broadcast and queue driver, so transcription runs in a background worker instead of blocking the request the user is waiting on.',
-      'Large audio uploads kept timing out, so the file is sliced into 5 MB chunks, sent one at a time behind a progress bar, and reassembled server-side.',
-      'The whole stack (Laravel, Redis, database) runs under docker-compose, so setting it up on another machine doesn’t mean reinstalling every service by hand. GitHub Actions runs 62 feature tests on every push.',
+      {
+        what: 'Whisper for transcription, Gemini for the summary',
+        why: 'Whisper turns the recording into a transcript, then Gemini pulls out a summary, the key topics and the action items. The transcript alone is still too long for anyone to actually read after a meeting.',
+      },
+      {
+        what: 'Live progress over WebSocket, with a polling fallback',
+        why: 'Transcription takes minutes, so the page first polled the server for progress. That was wasteful and still felt slow, so I switched to Laravel Reverb and let the server push each stage as it finishes. Reverb still drops the connection quietly now and then, so a 15 second check runs alongside it and the page recovers on its own.',
+      },
+      {
+        what: 'Redis as cache, broadcast and queue driver',
+        why: 'Transcription runs in a background worker instead of blocking the request the user is waiting on.',
+      },
+      {
+        what: 'Chunked upload in 5 MB slices',
+        why: 'Large audio uploads kept timing out, so the file is sliced, sent one chunk at a time behind a progress bar, and reassembled server-side.',
+      },
+      {
+        what: 'Docker Compose for the stack, 62 tests in CI',
+        why: 'Laravel, Redis and the database all come up together, so setting it up on another machine doesn’t mean reinstalling every service by hand. GitHub Actions runs the tests on every push.',
+      },
     ],
     tech: ['Laravel', 'Whisper', 'Gemini AI', 'Laravel Reverb', 'Redis', 'Docker', 'GitHub Actions'],
     links: {
@@ -94,11 +136,11 @@ export const experience = [
     period: 'Mar 2026 – Present',
     points: [
       'Part of a 5-person team building the Warehouse Management System, from architecture and feature decisions through to the code.',
-      'The stock figures in the system had drifted from what was physically in the warehouse, so I traced the bad movement records back through the history and cleaned them up in SQL — stock counts now match at 100%.',
+      'The stock figures in the system had drifted from what was physically in the warehouse, so I traced the bad movement records back through the history and cleaned them up in SQL, and stock counts now match at 100%.',
       'Rebuilt the legacy screens as simpler dashboards in React and Nuxt.js, and connected the company ERP to the warehouse system in Laravel and MySQL so the two stop holding different numbers for the same stock.',
       'Finance had no way to see stock value or aging without asking someone to pull it manually, so I proposed a reporting dashboard and built it. The team adopted it, and Finance can now see quantity, value, movement and aging directly.',
       'New team members were losing a day to environment setup, so I moved local development onto Docker and docker-compose.',
-      'Use Copilot and Gemini to move faster on routine code, writing specific prompts rather than vague ones — but I read and rework everything they produce, since generated code tends to be plausible rather than correct.',
+      'Use Copilot and Gemini to move faster on routine code, writing specific prompts rather than vague ones, but I read and rework everything they produce, since generated code tends to be plausible rather than correct.',
     ],
   },
 ]

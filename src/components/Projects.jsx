@@ -1,6 +1,65 @@
+import { useId, useState } from 'react'
 import Section from './Section'
 import { GitHubIcon, ExternalIcon } from './Icons'
 import SkillChip from './SkillChip'
+
+// Highlights are { what, why }: `what` is the scannable one-liner, `why` is the
+// reasoning, hidden until asked for. Plain strings still work and render as-is.
+function Highlight({ item }) {
+  const [open, setOpen] = useState(false)
+  const bodyId = useId()
+
+  if (typeof item === 'string') {
+    return (
+      <li className="flex gap-2">
+        <span aria-hidden="true" className="mt-0.5" style={{ color: 'var(--bp-accent)' }}>
+          ▸
+        </span>
+        <span>{item}</span>
+      </li>
+    )
+  }
+
+  return (
+    <li className="flex gap-2">
+      <span aria-hidden="true" className="mt-0.5" style={{ color: 'var(--bp-accent)' }}>
+        ▸
+      </span>
+      <div className="min-w-0 flex-1">
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls={bodyId}
+          className="bp-focus block w-full text-left transition hover:text-accent"
+        >
+          {/* Marker sits inline after the text so it stays next to the last
+              word when `what` wraps, rather than drifting to the card edge. */}
+          {item.what}{' '}
+          <span
+            aria-hidden="true"
+            className="ml-0.5 inline-block font-mono text-[10px] leading-none transition-transform duration-150"
+            style={{
+              color: 'var(--bp-ink-muted)',
+              transform: open ? 'rotate(90deg)' : 'none',
+            }}
+          >
+            ▶
+          </span>
+        </button>
+        {open && (
+          <p
+            id={bodyId}
+            className="mt-1.5 border-l-2 pl-3 text-[13px] leading-relaxed"
+            style={{ borderColor: 'var(--bp-grid)', color: 'var(--bp-ink-muted)' }}
+          >
+            {item.why}
+          </p>
+        )}
+      </div>
+    </li>
+  )
+}
 
 function ProjectCard({ project }) {
   return (
@@ -52,12 +111,7 @@ function ProjectCard({ project }) {
 
       <ul className="mt-4 space-y-2 text-sm" style={{ color: 'var(--bp-ink-soft)' }}>
         {project.highlights.map((h, i) => (
-          <li key={i} className="flex gap-2">
-            <span aria-hidden="true" className="mt-0.5" style={{ color: 'var(--bp-accent)' }}>
-              ▸
-            </span>
-            <span>{h}</span>
-          </li>
+          <Highlight key={i} item={h} />
         ))}
       </ul>
 
