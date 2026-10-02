@@ -177,7 +177,7 @@ export const experience = [
 ]
 
 export const skills = [
-  { group: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Nuxt.js', 'Inertia.js', 'Tailwind CSS'] },
+  { group: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Vue.js', 'Nuxt.js', 'Inertia.js', 'Tailwind CSS'] },
   { group: 'Backend', items: ['PHP', 'Laravel', 'Node.js (Express)', 'Python', 'FastAPI', 'REST API'] },
   { group: 'Database', items: ['MySQL', 'PostgreSQL (pgvector)', 'Redis'] },
   { group: 'Concepts', items: ['WebSocket (Laravel Reverb, Socket.io)', 'Automated Testing'] },
