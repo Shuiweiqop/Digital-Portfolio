@@ -9,10 +9,10 @@ export const profile = {
   title: 'Software Engineer',
   tagline:
     'I learn by building. Whether it’s a warehouse system, an AI meeting platform, or a real-time multiplayer game platform, I’m happiest turning an idea into something that actually works.',
-  location: 'Teriang, Pahang',
-  email: 'ngngyongng@gmail.com',
+  location: 'Triang, Pahang (relocating to Kuala Lumpur)',
+  email: 'yixuanmichealng@gmail.com',
   phone: '011-5955 8003',
-  availability: 'Open to full-time Software Engineer roles from September 2026',
+  availability: 'Open to full-time Software Engineer roles from December 2026',
   resumeUrl: '/NgYiXuan_SoftwareEngineer.pdf', // drop your PDF into /public with this name
   socials: {
     github: 'https://github.com/Shuiweiqop',
@@ -22,9 +22,9 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I’m a final-year Computer Science student at Universiti Malaysia Sabah (CGPA 3.51), currently interning as a full-stack developer at Godigital (Ean Label Industry), where I build features for a warehouse management system using Laravel, React, and Nuxt.js.",
-    "What I enjoy most is taking an idea all the way to something people actually use. My final-year project is an adaptive Python learning platform that tracks how well each student knows each concept, so the exercises it gives them can follow what they haven’t got yet instead of a fixed order. Outside coursework I’ve built a real-time multiplayer game platform, restructured so that adding a new game doesn’t mean rewriting the room and turn logic, and an AI meeting platform that turns a recording into a summary and a list of action items.",
-    "I care about code that holds up after I stop looking at it. On my FYP that meant 338 tests running on every push, which is how I found two bugs that were quietly corrupting the learning-gain figures while still producing numbers that looked reasonable. I’m graduating in November 2026 and available full-time from September 2026.",
+    "I’m a final-year Computer Science student at Universiti Malaysia Sabah (CGPA 3.51). I completed a six-month full-stack internship (Mar to Aug 2026) at Go Digital & Automation, placed at EAN Label Industry, where I worked on a warehouse management system with Laravel, React and Nuxt.js.",
+    "What I enjoy most is taking an idea all the way to something people actually use. My final-year project is an adaptive Python learning platform that tracks how well each student knows each concept, so the exercises it gives them can follow what they haven’t got yet instead of a fixed order. Outside coursework I’ve built a real-time multiplayer game platform, restructured so that adding a new game doesn’t mean rewriting the room and turn logic, and an AI meeting platform that turns a recording into a summary and a list of action items. I also built a RAG system that answers networking exam questions, then turned its retrieval into an agent tool and an MCP server.",
+    "I care about code that holds up after I stop looking at it. On my FYP that meant 338 tests running on every push, which is how I found two bugs that were quietly corrupting the learning-gain figures while still producing numbers that looked reasonable. I’m graduating in November 2026 and available full-time from December 2026.",
   ],
 }
 
@@ -54,7 +54,7 @@ export const projects = [
     ],
     tech: ['Laravel', 'React', 'Inertia.js', 'MySQL', 'Gemini API', 'Judge0', 'PHPUnit', 'Vitest', 'Playwright'],
     links: {
-      github: null, // add repo link if public, or leave null for "available on request"
+      github: 'https://github.com/Shuiweiqop/Web-Based-Python-Bootcamp-project',
       demo: null,
     },
     featured: true,
@@ -86,10 +86,40 @@ export const projects = [
         why: 'It works out which scoring patterns a finished hand matches.',
       },
     ],
-    tech: ['Node.js', 'Socket.io', 'JWT', 'PostgreSQL', 'Supabase', 'JavaScript'],
+    tech: ['Node.js', 'Express', 'Socket.io', 'JWT', 'PostgreSQL', 'Supabase', 'JavaScript'],
     links: {
-      github: 'https://github.com/Shuiweiqop', // update to the exact repo
-      demo: 'https://mahjong-app-bcu4.vercel.app/',
+      github: 'https://github.com/Shuiweiqop/mahjong-app',
+      demo: 'https://playground-drawguess.vercel.app/',
+    },
+    featured: true,
+  },
+  {
+    name: 'RAG Exam Q&A System',
+    context: 'Side Project · 2026',
+    blurb:
+      'A retrieval-augmented generation system that answers OSI networking questions with a cited source, built to measure whether retrieval actually works.',
+    highlights: [
+      {
+        what: '20-question eval set: Recall@1 85%, Recall@3 95%',
+        why: 'Most RAG demos stop at “it returns an answer”. Exam questions have known answers, so I measured retrieval instead of eyeballing it. A/B testing three chunking strategies showed knowledge-base coverage mattered more than chunking.',
+      },
+      {
+        what: 'Retrieval rebuilt as an agent tool (smolagents)',
+        why: 'The original pipeline always searched, even for a greeting. As a tool, the model decides when to search. In one run it found the first result too general, rewrote the query and searched again.',
+      },
+      {
+        what: 'The same tool exposed as an MCP server',
+        why: 'The smolagents tool only worked inside that framework. Over MCP (stdio), any MCP host can call it. Tested with MCP Inspector.',
+      },
+      {
+        what: 'Thread-safe connection pool, isolated test data',
+        why: 'Every search opened a new database connection, so I moved to a pool. I also found my chunking A/B script was overwriting the live table, and moved it to its own table.',
+      },
+    ],
+    tech: ['Python', 'FastAPI', 'React', 'Vite', 'PostgreSQL', 'pgvector', 'Gemini API', 'smolagents', 'MCP'],
+    links: {
+      github: 'https://github.com/Shuiweiqop/rag-exam-qa',
+      demo: null,
     },
     featured: true,
   },
@@ -116,11 +146,11 @@ export const projects = [
         why: 'Large audio uploads kept timing out, so the file is sliced, sent one chunk at a time behind a progress bar, and reassembled server-side.',
       },
       {
-        what: 'Docker Compose for the stack, 62 tests in CI',
-        why: 'Laravel, Redis and the database all come up together, so setting it up on another machine doesn’t mean reinstalling every service by hand. GitHub Actions runs the tests on every push.',
+        what: 'Docker Compose for MySQL and Redis, 62 tests in CI',
+        why: 'The database and Redis come up with one command, so a new machine doesn’t need them installed by hand. GitHub Actions runs the tests on every push.',
       },
     ],
-    tech: ['Laravel', 'Whisper', 'Gemini AI', 'Laravel Reverb', 'Redis', 'Docker', 'GitHub Actions'],
+    tech: ['Laravel', 'Whisper', 'Gemini AI', 'Laravel Reverb', 'Redis', 'Docker Compose', 'GitHub Actions'],
     links: {
       github: 'https://github.com/Shuiweiqop/meeting-ai-platform',
       demo: null,
@@ -132,34 +162,35 @@ export const projects = [
 export const experience = [
   {
     role: 'Web Developer Intern',
-    company: 'Godigital — Ean Label Industry',
-    period: 'Mar 2026 – Present',
+    company: 'Go Digital & Automation (placed at EAN Label Industry)',
+    period: 'Mar 2026 to Aug 2026',
     points: [
-      'Part of a 5-person team building the Warehouse Management System, from architecture and feature decisions through to the code.',
+      'Part of a 5-person team building the Warehouse Management System, including feature design discussions.',
       'The stock figures in the system had drifted from what was physically in the warehouse, so I traced the bad movement records back through the history and cleaned them up in SQL, and stock counts now match at 100%.',
       'Rebuilt the legacy screens as simpler dashboards in React and Nuxt.js, and connected the company ERP to the warehouse system in Laravel and MySQL so the two stop holding different numbers for the same stock.',
       'Finance had no way to see stock value or aging without asking someone to pull it manually, so I proposed a reporting dashboard and built it. The team adopted it, and Finance can now see quantity, value, movement and aging directly.',
       'New team members were losing a day to environment setup, so I moved local development onto Docker and docker-compose.',
-      'Use Copilot and Gemini to move faster on routine code, writing specific prompts rather than vague ones, but I read and rework everything they produce, since generated code tends to be plausible rather than correct.',
+      'Used GitHub Copilot and Gemini for routine code, and reviewed and reworked the output so the team could maintain it.',
     ],
   },
 ]
 
 export const skills = [
-  { group: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Nuxt.js', 'Inertia.js'] },
-  { group: 'Backend', items: ['PHP', 'Laravel', 'Java', 'C++', 'REST API'] },
-  { group: 'Database', items: ['MySQL', 'SQL', 'Redis'] },
-  { group: 'Concepts', items: ['REST API', 'WebSocket (Laravel Reverb)', 'Automated Testing'] },
-  { group: 'AI Tools', items: ['GitHub Copilot', 'Gemini AI', 'OpenAI Whisper', 'Prompt Engineering'] },
-  { group: 'Tools', items: ['Docker', 'Git', 'Figma'] },
+  { group: 'Frontend', items: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Nuxt.js', 'Inertia.js', 'Tailwind CSS'] },
+  { group: 'Backend', items: ['PHP', 'Laravel', 'Node.js (Express)', 'Python', 'FastAPI', 'REST API'] },
+  { group: 'Database', items: ['MySQL', 'PostgreSQL (pgvector)', 'Redis'] },
+  { group: 'Concepts', items: ['WebSocket (Laravel Reverb, Socket.io)', 'Automated Testing'] },
+  { group: 'AI', items: ['Gemini API', 'OpenAI Whisper', 'RAG', 'smolagents', 'MCP'] },
+  { group: 'Tools', items: ['Git', 'GitHub Actions', 'Docker Compose', 'Figma'] },
+  { group: 'Basic', items: ['Java', 'C++'] },
   { group: 'Languages', items: ['Malay (Native)', 'English (Fluent)', 'Mandarin (Fluent)'] },
 ]
 
 export const education = {
-  degree: 'BSc Computer Science (Hons) — Network Engineering',
+  degree: 'BSc Computer Science (Hons), Network Engineering',
   school: 'Universiti Malaysia Sabah',
-  period: 'Expected Nov 2026',
-  detail: 'CGPA: 3.51 · Available full-time from Sep 2026',
+  period: 'Graduating Nov 2026',
+  detail: 'CGPA: 3.51 · Available full-time from Dec 2026',
   coursework: [
     'Network Programming',
     'Cybersecurity',
@@ -187,5 +218,10 @@ export const certifications = [
       'Switching, Routing & Wireless Essentials',
       'Introduction to Networks',
     ],
+  },
+  {
+    issuer: 'Hugging Face',
+    name: 'AI Agents Fundamentals',
+    modules: [],
   },
 ]

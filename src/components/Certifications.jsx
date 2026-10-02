@@ -43,12 +43,14 @@ export default function Certifications({ certifications }) {
                       </span>
                     )}
                   </p>
-                  <p
-                    className="mt-1.5 text-[13px] leading-relaxed"
-                    style={{ color: 'var(--bp-ink-soft)' }}
-                  >
-                    {cert.modules.join(' · ')}
-                  </p>
+                  {cert.modules.length > 0 && (
+                    <p
+                      className="mt-1.5 text-[13px] leading-relaxed"
+                      style={{ color: 'var(--bp-ink-soft)' }}
+                    >
+                      {cert.modules.join(' · ')}
+                    </p>
+                  )}
                 </div>
               </li>
             ))}
