@@ -42,7 +42,7 @@ export default function Contact({ profile }) {
         <aside className="reveal bp-panel bp-shadow flex flex-col p-6">
           <p className="text-[15px] leading-relaxed" style={{ color: 'var(--bp-ink-soft)' }}>
             {profile.availability}. Whether you have a role in mind, a question, or just want to
-            connect — my inbox is always open.
+            connect, my inbox is always open.
           </p>
 
           <h3
