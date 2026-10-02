@@ -42,35 +42,36 @@
   --bp-grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cfilter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2.4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cg filter='url(%23w)' stroke='%23dfe3e6' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M0 28h112M0 56h112M0 84h112M0 112h112'/%3E%3Cpath d='M28 0v112M56 0v112M84 0v112M112 0v112'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bp-paper: #0e1216;
-    --bp-raised: #161b21;
-    --bp-grid: #1f2933;
-    --bp-ink: #e8edf2;
-    --bp-ink-soft: #b3bfca;
-    --bp-ink-muted: #8494a2;
-    --bp-accent: #22b8d8;
-    --bp-shadow: #22b8d8;
-    --bp-on-ink: #0e1216;
+/* Dark tokens. The theme is chosen by the inline script in index.html
+   (saved choice, else the OS setting) and toggled from the navbar. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bp-paper: #0e1216;
+  --bp-raised: #161b21;
+  --bp-grid: #1f2933;
+  --bp-ink: #e8edf2;
+  --bp-ink-soft: #b3bfca;
+  --bp-ink-muted: #8494a2;
+  --bp-accent: #22b8d8;
+  --bp-shadow: #22b8d8;
+  --bp-on-ink: #0e1216;
 
-    --bp-ed-bar: #05080b;
-    --bp-ed-tab: #9fb0bd;
-    --bp-ed-body: #161b21;
-    --bp-ed-gutter: #11161b;
-    --bp-ed-gutter-line: #263039;
-    --bp-ed-gutter-num: #5c6b78;
-    --bp-ed-code-bg: #0f1419;
-    --bp-syn-kw: #6cb6ff;
-    --bp-syn-fn: #d2a8ff;
-    --bp-syn-str: #7ee787;
-    --bp-syn-cm: #6e7c8a;
+  --bp-ed-bar: #05080b;
+  --bp-ed-tab: #9fb0bd;
+  --bp-ed-body: #161b21;
+  --bp-ed-gutter: #11161b;
+  --bp-ed-gutter-line: #263039;
+  --bp-ed-gutter-num: #5c6b78;
+  --bp-ed-code-bg: #0f1419;
+  --bp-syn-kw: #6cb6ff;
+  --bp-syn-fn: #d2a8ff;
+  --bp-syn-str: #7ee787;
+  --bp-syn-cm: #6e7c8a;
 
-    --bp-danger: #f87171;
-    --bp-sketch: #55636f;
+  --bp-danger: #f87171;
+  --bp-sketch: #55636f;
 
-    --bp-grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cfilter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2.4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cg filter='url(%23w)' stroke='%231f2933' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M0 28h112M0 56h112M0 84h112M0 112h112'/%3E%3Cpath d='M28 0v112M56 0v112M84 0v112M112 0v112'/%3E%3C/g%3E%3C/svg%3E");
-  }
+  --bp-grid-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cfilter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2.4' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cg filter='url(%23w)' stroke='%231f2933' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M0 28h112M0 56h112M0 84h112M0 112h112'/%3E%3Cpath d='M28 0v112M56 0v112M84 0v112M112 0v112'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 html {

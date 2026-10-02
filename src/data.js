@@ -22,7 +22,7 @@ export const profile = {
 
 export const about = {
   paragraphs: [
-    "I’m a final-year Computer Science student at Universiti Malaysia Sabah (CGPA 3.51). I completed a six-month full-stack internship (Mar to Aug 2026) at Go Digital & Automation, placed at EAN Label Industry, where I worked on a warehouse management system with Laravel, React and Nuxt.js.",
+    "I’m a final-year Computer Science student at Universiti Malaysia Sabah (CGPA 3.51). I completed a six-month software engineering internship (Mar to Aug 2026) at Go Digital & Automation, placed at EAN Label Industry, where I worked on a warehouse management system with Laravel, React and Nuxt.js.",
     "What I enjoy most is taking an idea all the way to something people actually use. My final-year project is an adaptive Python learning platform that tracks how well each student knows each concept, so the exercises it gives them can follow what they haven’t got yet instead of a fixed order. Outside coursework I’ve built a real-time multiplayer game platform, restructured so that adding a new game doesn’t mean rewriting the room and turn logic, and an AI meeting platform that turns a recording into a summary and a list of action items. I also built a RAG system that answers networking exam questions, then turned its retrieval into an agent tool and an MCP server.",
     "I care about code that holds up after I stop looking at it. On my FYP that meant 338 tests running on every push, which is how I found two bugs that were quietly corrupting the learning-gain figures while still producing numbers that looked reasonable. I’m graduating in November 2026 and available full-time from December 2026.",
   ],
@@ -31,7 +31,7 @@ export const about = {
 export const projects = [
   {
     name: 'Web-Based Python Bootcamp',
-    context: 'Final Year Project · 2025 – 2026',
+    context: '2025 – 2026',
     blurb:
       'A full-stack adaptive learning platform that teaches Python to beginners through lessons, coding exercises, gamification, and community features.',
     highlights: [
@@ -58,10 +58,11 @@ export const projects = [
       demo: null,
     },
     featured: true,
+    fyp: true,
   },
   {
     name: 'Playground: Real-Time Multiplayer Game Platform',
-    context: 'Side Project · 2025',
+    context: '2025',
     blurb:
       'A real-time multiplayer game platform (Draw & Guess, Werewolf) where the room, turn and player logic is shared, so each new game only has to describe its own rules.',
     highlights: [
@@ -94,38 +95,8 @@ export const projects = [
     featured: true,
   },
   {
-    name: 'RAG Exam Q&A System',
-    context: 'Side Project · 2026',
-    blurb:
-      'A retrieval-augmented generation system that answers OSI networking questions with a cited source, built to measure whether retrieval actually works.',
-    highlights: [
-      {
-        what: '20-question eval set: Recall@1 85%, Recall@3 95%',
-        why: 'Most RAG demos stop at “it returns an answer”. Exam questions have known answers, so I measured retrieval instead of eyeballing it. A/B testing three chunking strategies showed knowledge-base coverage mattered more than chunking.',
-      },
-      {
-        what: 'Retrieval rebuilt as an agent tool (smolagents)',
-        why: 'The original pipeline always searched, even for a greeting. As a tool, the model decides when to search. In one run it found the first result too general, rewrote the query and searched again.',
-      },
-      {
-        what: 'The same tool exposed as an MCP server',
-        why: 'The smolagents tool only worked inside that framework. Over MCP (stdio), any MCP host can call it. Tested with MCP Inspector.',
-      },
-      {
-        what: 'Thread-safe connection pool, isolated test data',
-        why: 'Every search opened a new database connection, so I moved to a pool. I also found my chunking A/B script was overwriting the live table, and moved it to its own table.',
-      },
-    ],
-    tech: ['Python', 'FastAPI', 'React', 'Vite', 'PostgreSQL', 'pgvector', 'Gemini API', 'smolagents', 'MCP'],
-    links: {
-      github: 'https://github.com/Shuiweiqop/rag-exam-qa',
-      demo: null,
-    },
-    featured: true,
-  },
-  {
     name: 'Meeting AI Platform',
-    context: 'Side Project · 2025',
+    context: '2025',
     blurb:
       'AI-powered platform that turns meeting recordings into transcripts, summaries, key topics, and action items. Built for people who don’t have the habit of taking notes.',
     highlights: [
@@ -157,11 +128,41 @@ export const projects = [
     },
     featured: true,
   },
+  {
+    name: 'RAG Exam Q&A System',
+    context: '2026',
+    blurb:
+      'A retrieval-augmented generation system that answers OSI networking questions with a cited source, built to measure whether retrieval actually works.',
+    highlights: [
+      {
+        what: '20-question eval set: Recall@1 85%, Recall@3 95%',
+        why: 'Most RAG demos stop at “it returns an answer”. Exam questions have known answers, so I measured retrieval instead of eyeballing it. A/B testing three chunking strategies showed knowledge-base coverage mattered more than chunking.',
+      },
+      {
+        what: 'Retrieval rebuilt as an agent tool (smolagents)',
+        why: 'The original pipeline always searched, even for a greeting. As a tool, the model decides when to search. In one run it found the first result too general, rewrote the query and searched again.',
+      },
+      {
+        what: 'The same tool exposed as an MCP server',
+        why: 'The smolagents tool only worked inside that framework. Over MCP (stdio), any MCP host can call it. Tested with MCP Inspector.',
+      },
+      {
+        what: 'Thread-safe connection pool, isolated test data',
+        why: 'Every search opened a new database connection, so I moved to a pool. I also found my chunking A/B script was overwriting the live table, and moved it to its own table.',
+      },
+    ],
+    tech: ['Python', 'FastAPI', 'React', 'Vite', 'PostgreSQL', 'pgvector', 'Gemini API', 'smolagents', 'MCP'],
+    links: {
+      github: 'https://github.com/Shuiweiqop/rag-exam-qa',
+      demo: null,
+    },
+    featured: true,
+  },
 ]
 
 export const experience = [
   {
-    role: 'Web Developer Intern',
+    role: 'Software Engineering Intern',
     company: 'Go Digital & Automation (placed at EAN Label Industry)',
     period: 'Mar 2026 to Aug 2026',
     points: [
@@ -183,11 +184,11 @@ export const skills = [
   { group: 'AI', items: ['Gemini API', 'OpenAI Whisper', 'RAG', 'smolagents', 'MCP'] },
   { group: 'Tools', items: ['Git', 'GitHub Actions', 'Docker Compose', 'Figma'] },
   { group: 'Basic', items: ['Java', 'C++'] },
-  { group: 'Languages', items: ['Malay (Native)', 'English (Fluent)', 'Mandarin (Fluent)'] },
+  { group: 'Languages', items: ['Malay (Native)', 'English (Fluent)', 'Mandarin (Native)'] },
 ]
 
 export const education = {
-  degree: 'BSc Computer Science (Hons), Network Engineering',
+  degree: 'Bachelor of Computer Science with Honours (Network Engineering)',
   school: 'Universiti Malaysia Sabah',
   period: 'Graduating Nov 2026',
   detail: 'CGPA: 3.51 · Available full-time from Dec 2026',

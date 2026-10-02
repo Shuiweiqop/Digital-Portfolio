@@ -61,12 +61,21 @@ function Highlight({ item }) {
   )
 }
 
-function ProjectCard({ project }) {
+// `lead` is the final-year project: full width, heavier shadow, a tag above the
+// title, and highlights split into two columns so the wide card isn't one long list.
+function ProjectCard({ project, lead = false }) {
   return (
-    <article className="reveal bp-panel bp-shadow group flex flex-col p-5 transition-transform duration-150 hover:-translate-y-1">
+    <article
+      className={`reveal bp-panel group flex flex-col transition-transform duration-150 hover:-translate-y-1 ${
+        lead ? 'bp-shadow-lg p-6 sm:p-7' : 'bp-shadow p-5'
+      }`}
+    >
+      {lead && (
+        <span className="bp-tag mb-3 self-start">Final Year Project</span>
+      )}
       <div className="flex items-start justify-between gap-4">
         <h3
-          className="text-[17px] font-extrabold uppercase leading-tight tracking-[-0.02em]"
+          className={`${lead ? 'text-[22px]' : 'text-[17px]'} font-extrabold uppercase leading-tight tracking-[-0.02em]`}
           style={{ color: 'var(--bp-ink)' }}
         >
           {project.name}
@@ -105,11 +114,17 @@ function ProjectCard({ project }) {
 
       <div className="mt-2.5 h-[3px] w-12" style={{ backgroundColor: 'var(--bp-accent)' }} />
 
-      <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--bp-ink-soft)' }}>
+      <p
+        className={`mt-3 leading-relaxed ${lead ? 'text-[15px]' : 'text-sm'}`}
+        style={{ color: 'var(--bp-ink-soft)' }}
+      >
         {project.blurb}
       </p>
 
-      <ul className="mt-4 space-y-2 text-sm" style={{ color: 'var(--bp-ink-soft)' }}>
+      <ul
+        className={`mt-4 text-sm ${lead ? 'grid items-start gap-x-8 gap-y-2 md:grid-cols-2' : 'space-y-2'}`}
+        style={{ color: 'var(--bp-ink-soft)' }}
+      >
         {project.highlights.map((h, i) => (
           <Highlight key={i} item={h} />
         ))}
@@ -131,13 +146,30 @@ function ProjectCard({ project }) {
 }
 
 export default function Projects({ projects }) {
+  const lead = projects.filter((p) => p.fyp)
+  const side = projects.filter((p) => !p.fyp)
+
   return (
     <Section id="projects" label="Work" title="Things I've Built">
-      <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((p) => (
-          <ProjectCard key={p.name} project={p} />
-        ))}
-      </div>
+      {lead.map((p) => (
+        <ProjectCard key={p.name} project={p} lead />
+      ))}
+
+      {side.length > 0 && (
+        <>
+          <h3
+            className="reveal mb-5 mt-14 font-mono text-[11px] font-bold uppercase tracking-[0.16em]"
+            style={{ color: 'var(--bp-accent)' }}
+          >
+            Side Projects
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            {side.map((p) => (
+              <ProjectCard key={p.name} project={p} />
+            ))}
+          </div>
+        </>
+      )}
     </Section>
   )
 }

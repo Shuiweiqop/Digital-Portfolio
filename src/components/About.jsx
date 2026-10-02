@@ -5,7 +5,7 @@ export default function About({ about, education }) {
     <Section id="about" label="Profile" title="About Me">
       <div className="grid gap-8 md:grid-cols-3">
         <div
-          className="reveal space-y-4 text-[14.5px] leading-relaxed md:col-span-2"
+          className="reveal space-y-4 text-justify text-[14.5px] leading-relaxed md:col-span-2"
           style={{ color: 'var(--bp-ink-soft)' }}
         >
           {about.paragraphs.map((p, i) => (

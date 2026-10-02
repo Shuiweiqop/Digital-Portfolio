@@ -112,84 +112,127 @@ function PortraitEditor() {
   )
 }
 
+// Role, location and availability laid out as the title block of an
+// engineering drawing: the boxed fields along the bottom of every sheet. They
+// are the facts a recruiter scans for, so they get real labels and cells.
+function TitleBlock({ profile }) {
+  const fields = [
+    { label: 'Role', value: profile.title },
+    { label: 'Based in', value: profile.location },
+    { label: 'Availability', value: profile.availability, wide: true },
+  ]
+
+  return (
+    <dl
+      // The 3px gap over an ink fill draws the inner rules between cells.
+      className="grid grid-cols-2 gap-[3px] border-[3px] sm:grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)_minmax(0,1.35fr)]"
+      style={{ borderColor: 'var(--bp-ink)', backgroundColor: 'var(--bp-ink)' }}
+    >
+      {fields.map((f) => (
+        <div
+          key={f.label}
+          className={`px-4 py-3 ${f.wide ? 'col-span-2 sm:col-span-1' : ''}`}
+          style={{ backgroundColor: 'var(--bp-raised)' }}
+        >
+          <dt className="text-xs font-medium" style={{ color: 'var(--bp-ink-muted)' }}>
+            {f.label}
+          </dt>
+          <dd
+            className="mt-1 text-[15px] font-semibold leading-snug"
+            style={{ color: 'var(--bp-ink)' }}
+          >
+            {f.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
 export default function Hero({ profile }) {
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* Decorative sketch of a desk setup. Its keyboard lights up as you type. */}
-      <SketchDesk className="pointer-events-none absolute bottom-6 right-4 hidden w-64 opacity-70 lg:block xl:w-72" />
+      <div className="mx-auto flex min-h-[88vh] max-w-5xl flex-col justify-center px-6 pb-14 pt-24">
+        {/* The name is set like the title of a drawing: expanded, heavy, the
+            full width of the sheet, ruled off underneath. */}
+        <h1
+          className="font-display text-[clamp(34px,10.5vw,118px)] font-extrabold uppercase leading-[0.9] tracking-[-0.02em]"
+          style={{ color: 'var(--bp-ink)', fontStretch: '125%' }}
+        >
+          {profile.name}
+        </h1>
 
-      <div className="relative mx-auto grid min-h-[88vh] max-w-5xl items-center gap-9 px-6 pb-14 pt-24 md:grid-cols-[auto_1fr] md:gap-10">
-        <div className="order-first animate-fade-up mx-auto md:mx-0">
-          <PortraitEditor />
-        </div>
+        <div className="mt-4 h-[3px]" style={{ backgroundColor: 'var(--bp-ink)' }} />
 
-        <div className="animate-fade-up">
-          <span className="bp-tag">{profile.title}</span>
-
-          <h1
-            className="mt-3 text-[clamp(34px,6vw,56px)] font-extrabold uppercase leading-[0.94] tracking-[-0.035em]"
-            style={{ color: 'var(--bp-ink)' }}
-          >
-            {profile.name}
-          </h1>
-
-          <div className="mb-3.5 mt-2.5 h-[3px]" style={{ backgroundColor: 'var(--bp-ink)' }} />
-
-          <p className="text-[17px] font-semibold" style={{ color: 'var(--bp-ink-soft)' }}>
-            I build things for the web.
-          </p>
-
-          <p
-            className="mt-3.5 max-w-[54ch] text-[14.5px] leading-relaxed"
-            style={{ color: 'var(--bp-ink-soft)' }}
-          >
-            {profile.tagline}
-          </p>
-
-          <p className="mt-4 font-mono text-xs" style={{ color: 'var(--bp-ink-muted)' }}>
-            {profile.availability}
-          </p>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <a href="#projects" className="bp-btn bp-btn-primary bp-focus">
-              View my work
-            </a>
-            <a
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="bp-btn bp-btn-secondary bp-focus"
+        <div className="mt-9 grid gap-10 md:grid-cols-[minmax(0,1fr)_auto] md:gap-x-12">
+          <div className="min-w-0">
+            <p
+              className="text-[clamp(20px,2.4vw,26px)] font-semibold leading-tight tracking-[-0.01em]"
+              style={{ color: 'var(--bp-ink)' }}
             >
-              <DownloadIcon /> Resume
-            </a>
+              I build things for the web.
+            </p>
+
+            <p
+              className="mt-4 max-w-[56ch] text-base leading-[1.65]"
+              style={{ color: 'var(--bp-ink-soft)' }}
+            >
+              {profile.tagline}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-5">
+              <div className="flex flex-wrap gap-3">
+                <a href="#projects" className="bp-btn bp-btn-primary bp-focus">
+                  View my work
+                </a>
+                <a
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bp-btn bp-btn-secondary bp-focus"
+                >
+                  <DownloadIcon /> Resume
+                </a>
+              </div>
+
+              <div className="flex items-center gap-5" style={{ color: 'var(--bp-ink-muted)' }}>
+                <a
+                  href={profile.socials.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  className="bp-focus transition hover:text-accent"
+                >
+                  <GitHubIcon className="h-6 w-6" />
+                </a>
+                <a
+                  href={profile.socials.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="bp-focus transition hover:text-accent"
+                >
+                  <LinkedInIcon className="h-6 w-6" />
+                </a>
+                <a
+                  href={`mailto:${profile.email}`}
+                  aria-label="Email"
+                  className="bp-focus transition hover:text-accent"
+                >
+                  <MailIcon className="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <TitleBlock profile={profile} />
+            </div>
           </div>
 
-          <div className="mt-7 flex items-center gap-5" style={{ color: 'var(--bp-ink-muted)' }}>
-            <a
-              href={profile.socials.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="bp-focus transition hover:text-accent"
-            >
-              <GitHubIcon className="h-6 w-6" />
-            </a>
-            <a
-              href={profile.socials.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="bp-focus transition hover:text-accent"
-            >
-              <LinkedInIcon className="h-6 w-6" />
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="bp-focus transition hover:text-accent"
-            >
-              <MailIcon className="h-6 w-6" />
-            </a>
+          <div className="flex flex-col items-center gap-10 md:items-end">
+            <PortraitEditor />
+            {/* Decorative sketch of a desk setup. Its keyboard lights up as you type. */}
+            <SketchDesk className="pointer-events-none hidden w-60 opacity-70 lg:block" />
           </div>
         </div>
       </div>
